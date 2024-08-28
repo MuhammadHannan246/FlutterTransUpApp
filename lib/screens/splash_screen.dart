@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter_transup_app/screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_transup_app/theme/colors.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

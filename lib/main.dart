@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return 
      MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'The App Accelerator',
+        title: 'TransUp',
         theme: ThemeStyle.lightTheme,
         initialRoute: SplashScreen.routeName,
         routes: PageRoutes().routes(),
