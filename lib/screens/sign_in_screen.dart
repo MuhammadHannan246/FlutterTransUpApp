@@ -61,7 +61,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Login With Your Account',
+                          'Login To Your Account',
                           style: Theme.of(context)
                               .textTheme
                               .headlineMedium!
