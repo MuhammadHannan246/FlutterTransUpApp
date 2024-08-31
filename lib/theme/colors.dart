@@ -6,7 +6,7 @@ MaterialColor kPrimarySwatchColor = MaterialColor(
   const <int, Color>{
     50: Color(0xfffde6e9),
     100: Color(0xfffbccd3),
-    200: Color(0xffff799a7),
+    200: Color(0xfff799a7),
     300: Color(0xfff2667a),
     400: Color(0xFFee334e),
     500: kPrimaryColor,

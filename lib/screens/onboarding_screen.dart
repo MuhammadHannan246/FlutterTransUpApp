@@ -34,7 +34,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     },
   ];
 
-  void _nextPage() {
+  void nextOnboarding() {
     if (currentIndex < onboardingData.length - 1) {
       setState(() {
         currentIndex += 1;
@@ -44,7 +44,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     }
   }
 
-  void _prevPage() {
+  void previousOnboarding() {
     if (currentIndex > 0) {
       setState(() {
         currentIndex -= 1;
@@ -65,13 +65,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(height: 50),
+                      const SizedBox(height: 50),
                       SvgPicture.asset(
                         onboardingData[currentIndex]['image']!,
                         height: 250,
                         width: 250,
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       Text(
                         onboardingData[currentIndex]['title']!,
                         style: Theme.of(context)
@@ -83,7 +83,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Text(
                         onboardingData[currentIndex]['description']!,
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -91,7 +91,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 40),
+                      const SizedBox(height: 40),
                     ],
                   ),
                 ),
@@ -110,7 +110,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   MaterialButton(
-                    onPressed: _prevPage,
+                    onPressed: previousOnboarding,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25),
                       side: BorderSide(color: kSecondarySwatchColor),
@@ -123,7 +123,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                   ),
                   MaterialButton(
-                    onPressed: _nextPage,
+                    onPressed: nextOnboarding,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25),
                       side: BorderSide(color: kPrimarySwatchColor),
@@ -148,7 +148,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     return Container(
       height: 10,
       width: currentIndex == index ? 20 : 10,
-      margin: EdgeInsets.symmetric(horizontal: 5),
+      margin: const EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         color: currentIndex == index

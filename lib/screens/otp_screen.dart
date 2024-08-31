@@ -1,20 +1,19 @@
-
 import 'package:flutter_transup_app/screens/forgot_password_screen.dart';
 import 'package:flutter_transup_app/screens/sign_up_screen.dart';
 import 'package:flutter_transup_app/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-class SignInScreen extends StatefulWidget {
-  static const routeName = '/sign-in-screen';
+class OtpScreen extends StatefulWidget {
+  static const routeName = '/otp-screen';
 
-  const SignInScreen({super.key});
+  const OtpScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<OtpScreen> createState() => _OtpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _OtpScreenState extends State<OtpScreen> {
   final formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -55,7 +54,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: Image.asset(
                       'assets/images/logo-square.png',
                     ),
-                  ),  
+                  ),
                   SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -230,9 +229,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           children: [
                             Expanded(
                               child: ElevatedButton(
-                                onPressed: () {
-                                },
-                              
+                                onPressed: () {},
                                 child: Text(
                                   'Log In',
                                   style: Theme.of(context)
@@ -249,8 +246,8 @@ class _SignInScreenState extends State<SignInScreen> {
                             Expanded(
                               child: MaterialButton(
                                 onPressed: () {
-                                  Navigator.of(context)
-                                      .pushNamed(ForgotPasswordScreen.routeName);
+                                  Navigator.of(context).pushNamed(
+                                      ForgotPasswordScreen.routeName);
                                 },
                                 child: Text(
                                   'Forgot Password',
