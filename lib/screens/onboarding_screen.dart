@@ -1,6 +1,6 @@
-import 'package:flutter_transup_app/theme/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_transup_app/theme/colors.dart';
 
 class OnboardingScreen extends StatefulWidget {
   static const routeName = '/onboarding-screen';
@@ -12,60 +12,148 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  @override
+  int currentIndex = 0;
+
+  final List<Map<String, String>> onboardingData = [
+    {
+      'image': 'assets/images/seo.svg',
+      'title': 'Welcome to TransUp',
+      'description':
+          'Experience the best translation and transcription services with a single tap.',
+    },
+    {
+      'image': 'assets/images/communication.svg',
+      'title': 'Effortless Communication',
+      'description': 'Communicate across languages with ease and precision.',
+    },
+    {
+      'image': 'assets/images/security.svg',
+      'title': 'Your Security Matters',
+      'description':
+          'We prioritize your data privacy and security with top-notch encryption.',
+    },
+  ];
+
+  void _nextPage() {
+    if (currentIndex < onboardingData.length - 1) {
+      setState(() {
+        currentIndex += 1;
+      });
+    } else {
+      // Navigate to the next screen or home screen
+    }
+  }
+
+  void _prevPage() {
+    if (currentIndex > 0) {
+      setState(() {
+        currentIndex -= 1;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
-      child: Scaffold(
-        resizeToAvoidBottomInset: true,
-        body: SingleChildScrollView(
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          physics: const ClampingScrollPhysics(),
-          child: Padding(
-            padding: const EdgeInsets.all(32.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Image.asset(
-                    'assets/images/onboard-1.jpg',
-                  ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text(
-                    'Onboarding Screen ',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineMedium!
-                        .copyWith(
-                          color: kBlackColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text(
-                    'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words,',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(
-                          color: kBlackColor,
-                        ),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 4,
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 50),
+                      SvgPicture.asset(
+                        onboardingData[currentIndex]['image']!,
+                        height: 250,
+                        width: 250,
+                      ),
+                      SizedBox(height: 30),
+                      Text(
+                        onboardingData[currentIndex]['title']!,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineMedium!
+                            .copyWith(
+                              color: kSecondarySwatchColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        onboardingData[currentIndex]['description']!,
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              color: kTextColor,
+                            ),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: 40),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(
+                onboardingData.length,
+                (index) => buildDot(index, context),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  MaterialButton(
+                    onPressed: _prevPage,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                      side: BorderSide(color: kSecondarySwatchColor),
+                    ),
+                    child: Text(
+                      'Back',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: kSecondarySwatchColor,
+                          ),
+                    ),
+                  ),
+                  MaterialButton(
+                    onPressed: _nextPage,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                      side: BorderSide(color: kPrimarySwatchColor),
+                    ),
+                    child: Text(
+                      'Next',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: kPrimarySwatchColor,
+                          ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget buildDot(int index, BuildContext context) {
+    return Container(
+      height: 10,
+      width: currentIndex == index ? 20 : 10,
+      margin: EdgeInsets.symmetric(horizontal: 5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        color: currentIndex == index
+            ? kSecondarySwatchColor
+            : kSecondarySwatchColor.withOpacity(0.5),
       ),
     );
   }

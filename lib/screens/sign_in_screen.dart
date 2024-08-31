@@ -55,7 +55,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: Image.asset(
                       'assets/images/logo-square.png',
                     ),
-                  ),
+                  ),  
                   SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
