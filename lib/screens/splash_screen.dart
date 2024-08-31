@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:flutter_transup_app/screens/sign_in_screen.dart';
+import 'package:flutter_transup_app/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
       const Duration(seconds: 1),
       () => Navigator.pushNamedAndRemoveUntil(
         context,
-        SignInScreen.routeName,
+        OnboardingScreen.routeName,
         (route) => false,
       ),
     );
